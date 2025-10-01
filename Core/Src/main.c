@@ -18,9 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-#include <stdbool.h>
-
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -46,11 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-// uint32_t ticks;
-// uint32_t pre_ticks;
-bool has_switched;
-GPIO_PinState cur_key_state;
-GPIO_PinState pre_key_state;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -93,11 +87,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  has_switched = false;
-  pre_key_state = HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin);
+  HAL_TIM_Base_Start_IT(&htim1);
 
-  HAL_GPIO_TogglePin(LEDR_GPIO_Port, LEDR_Pin);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,38 +100,24 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    cur_key_state = HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin);
-    //检测按键抖动，平滑输出
-    // if (key_state != pre_key_state) {
-    //   pre_key_state = key_state;
-    //   continue;
-    // }
-
-    if (cur_key_state == GPIO_PIN_SET) {
-      if (has_switched) {continue;}
-      else if (pre_key_state == GPIO_PIN_RESET) {
-        pre_key_state = GPIO_PIN_SET;
-        continue;
-      }
-
-      HAL_GPIO_TogglePin(LEDR_GPIO_Port, LEDR_Pin);
-      HAL_GPIO_TogglePin(LEDG_GPIO_Port, LEDG_Pin);
-      has_switched = true;
+    int counter = __HAL_TIM_GET_COUNTER(&htim1);
+    int max_cnt = __HAL_TIM_GET_AUTORELOAD(&htim1);
+    if (counter < max_cnt / 4) {
+      HAL_GPIO_WritePin(LEDG_GPIO_Port, LEDG_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_RESET);
     }
-
+    else if (counter < max_cnt / 2) {
+      HAL_GPIO_WritePin(LEDG_GPIO_Port, LEDG_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_RESET);
+    }
+    else if (counter < max_cnt * 3 / 4) {
+      HAL_GPIO_WritePin(LEDG_GPIO_Port, LEDG_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_SET);
+    }
     else {
-      if (pre_key_state == GPIO_PIN_SET) {
-        pre_key_state = GPIO_PIN_RESET;
-        continue;
-      }
-      has_switched = false;
+      HAL_GPIO_WritePin(LEDG_GPIO_Port, LEDG_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_SET);
     }
-
-    // HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_RESET);
-    // HAL_Delay(1000);
-    // HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_SET);
-    // HAL_Delay(1000);
-    // ticks = HAL_GetTick();
   }
   /* USER CODE END 3 */
 }
