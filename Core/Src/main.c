@@ -18,14 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-#include <stdbool.h>
-
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,10 +58,9 @@ PINPORT LED;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void light_flash_ctrl(uint32_t *pre_ticks, PINPORT* LED);
-void switch_led(PINPORT* LED);
 /* USER CODE BEGIN PFP */
-
+void switch_led(PINPORT* LED);
+void light_flash_ctrl(uint32_t *pre_ticks, PINPORT* LED);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -100,6 +97,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   has_switched = false;
   pre_ticks = HAL_GetTick();
