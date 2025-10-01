@@ -214,6 +214,7 @@ void light_flash_ctrl(uint32_t *pre_ticks, PINPORT* LED) {
 }
 
 void switch_led(PINPORT* LED) {
+  HAL_GPIO_WritePin(LED->port, LED->pin, GPIO_PIN_SET);
   if (LED->pin == LEDR_Pin) {
     *LED = LEDG;
   }
