@@ -30,12 +30,16 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef struct {
+  uint16_t pin;
+  GPIO_TypeDef* port;
+}PINPORT;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define LEDR (PINPORT){LEDR_Pin, LEDR_GPIO_Port}
+#define LEDG (PINPORT){LEDG_Pin, LEDG_GPIO_Port}
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -47,14 +51,17 @@
 
 /* USER CODE BEGIN PV */
 // uint32_t ticks;
-// uint32_t pre_ticks;
+uint32_t pre_ticks;
 bool has_switched;
 GPIO_PinState cur_key_state;
 GPIO_PinState pre_key_state;
+PINPORT LED;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void light_flash_ctrl(uint32_t *pre_ticks, PINPORT* LED);
+void switch_led(PINPORT* LED);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -95,9 +102,11 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   has_switched = false;
+  pre_ticks = HAL_GetTick();
   pre_key_state = HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin);
+  LED = LEDR;
 
-  HAL_GPIO_TogglePin(LEDR_GPIO_Port, LEDR_Pin);
+  HAL_GPIO_TogglePin(LEDG_GPIO_Port, LEDG_Pin);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,11 +130,9 @@ int main(void)
         continue;
       }
 
-      HAL_GPIO_TogglePin(LEDR_GPIO_Port, LEDR_Pin);
-      HAL_GPIO_TogglePin(LEDG_GPIO_Port, LEDG_Pin);
+      switch_led(&LED);
       has_switched = true;
     }
-
     else {
       if (pre_key_state == GPIO_PIN_SET) {
         pre_key_state = GPIO_PIN_RESET;
@@ -133,6 +140,8 @@ int main(void)
       }
       has_switched = false;
     }
+
+    light_flash_ctrl(&pre_ticks, &LED);
 
     // HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_RESET);
     // HAL_Delay(1000);
@@ -196,7 +205,22 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void light_flash_ctrl(uint32_t *pre_ticks, PINPORT* LED) {
+  uint32_t cur_ticks = HAL_GetTick();
+  if (cur_ticks - *pre_ticks > 500) {
+    *pre_ticks = cur_ticks;
+    HAL_GPIO_TogglePin(LED->port, LED->pin);
+  }
+}
 
+void switch_led(PINPORT* LED) {
+  if (LED->pin == LEDR_Pin) {
+    *LED = LEDG;
+  }
+  else {
+    *LED = LEDR;
+  }
+}
 /* USER CODE END 4 */
 
 /**
