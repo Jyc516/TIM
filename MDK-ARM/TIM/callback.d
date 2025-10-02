@@ -32,6 +32,7 @@ tim/callback.o: ..\Core\Src\Callback.cpp ..\Core\Inc\main.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
   ..\Core\Inc\gpio.h ..\Core\Inc\tim.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\cmath \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__assert \

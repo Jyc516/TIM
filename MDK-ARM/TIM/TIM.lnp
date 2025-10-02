@@ -5,6 +5,7 @@
 "tim\gpio.o"
 "tim\iwdg.o"
 "tim\tim.o"
+"tim\usart.o"
 "tim\stm32f4xx_it.o"
 "tim\stm32f4xx_hal_msp.o"
 "tim\stm32f4xx_hal_iwdg.o"
@@ -23,6 +24,7 @@
 "tim\stm32f4xx_hal_exti.o"
 "tim\stm32f4xx_hal_tim.o"
 "tim\stm32f4xx_hal_tim_ex.o"
+"tim\stm32f4xx_hal_uart.o"
 "tim\system_stm32f4xx.o"
 --library_type=microlib --strict --scatter "TIM\TIM.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

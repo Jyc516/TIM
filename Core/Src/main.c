@@ -20,6 +20,7 @@
 #include "main.h"
 #include "iwdg.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -48,6 +49,7 @@
 uint32_t ticks;
 uint32_t arr_value;
 extern volatile uint32_t brightness;
+uint8_t tx_msg[] = "Hello, RoboMaster!\n";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -91,7 +93,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
-  // MX_IWDG_Init();
+  MX_IWDG_Init();
+  MX_UART7_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIM_Base_Start_IT(&htim1);
@@ -127,6 +130,10 @@ int main(void)
     // ticks = HAL_GetTick();
     // arr_value = __HAL_TIM_GetAutoreload(&htim1) + 1;
     // brightness = arr_value * sinf(4 * ticks / 1000.f) - 1;
+
+    HAL_UART_Transmit(&huart7, tx_msg, 19, 1000);
+    HAL_Delay(1000);
+
     __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, brightness);
 
     if (HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_SET) {
