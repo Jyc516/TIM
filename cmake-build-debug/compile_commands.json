@@ -1,6 +1,12 @@
 [
 {
   "directory": "D:/Projects/RM/TIM/cmake-build-debug",
+  "command": "C:\\Users\\JiangYC\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe -DDEBUG -DSTM32F427xx -DUSE_HAL_DRIVER -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Core/Inc -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/STM32F4xx_HAL_Driver/Inc -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/CMSIS/Device/ST/STM32F4xx/Include -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/CMSIS/Include -g -fdiagnostics-color=always -o CMakeFiles\\TIM.dir\\Core\\Src\\Callback.cpp.obj -c D:\\Projects\\RM\\TIM\\Core\\Src\\Callback.cpp",
+  "file": "D:\\Projects\\RM\\TIM\\Core\\Src\\Callback.cpp",
+  "output": "CMakeFiles\\TIM.dir\\Core\\Src\\Callback.cpp.obj"
+},
+{
+  "directory": "D:/Projects/RM/TIM/cmake-build-debug",
   "command": "C:\\Users\\JiangYC\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\gcc.exe -DDEBUG -DSTM32F427xx -DUSE_HAL_DRIVER -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Core/Inc -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/STM32F4xx_HAL_Driver/Inc -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/CMSIS/Device/ST/STM32F4xx/Include -ID:/Projects/RM/TIM/cmake/stm32cubemx/../../Drivers/CMSIS/Include -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\TIM.dir\\Core\\Src\\main.c.obj -c D:\\Projects\\RM\\TIM\\Core\\Src\\main.c",
   "file": "D:\\Projects\\RM\\TIM\\Core\\Src\\main.c",
   "output": "CMakeFiles\\TIM.dir\\Core\\Src\\main.c.obj"

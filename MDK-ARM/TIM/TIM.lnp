@@ -6,6 +6,7 @@
 "tim\tim.o"
 "tim\stm32f4xx_it.o"
 "tim\stm32f4xx_hal_msp.o"
+"tim\callback.o"
 "tim\stm32f4xx_hal_iwdg.o"
 "tim\stm32f4xx_hal_rcc.o"
 "tim\stm32f4xx_hal_rcc_ex.o"
