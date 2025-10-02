@@ -48,7 +48,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint32_t ticks;
+uint32_t arr_value;
+uint32_t brightness;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,6 +97,7 @@ int main(void)
   MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  __HAL_DBGMCU_FREEZE_IWDG();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,8 +126,9 @@ int main(void)
     //   HAL_GPIO_WritePin(LEDR_GPIO_Port, LEDR_Pin, GPIO_PIN_SET);
     // }
 
-    uint32_t arr_value = __HAL_TIM_GetAutoreload(&htim1) + 1;
-    uint32_t brightness = arr_value * sinf(4 * HAL_GetTick() / 1000.f) - 1;
+    ticks = HAL_GetTick();
+    arr_value = __HAL_TIM_GetAutoreload(&htim1) + 1;
+    brightness = arr_value * sinf(4 * ticks / 1000.f) - 1;
     __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, brightness);
 
     if (HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_SET) {

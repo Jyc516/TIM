@@ -24,6 +24,7 @@ Section Cross References
     main.o(.text.main) refers to iwdg.o(.text.MX_IWDG_Init) for MX_IWDG_Init
     main.o(.text.main) refers to tim.o(.bss.htim1) for htim1
     main.o(.text.main) refers to stm32f4xx_hal_tim.o(.text.HAL_TIM_PWM_Start) for HAL_TIM_PWM_Start
+    main.o(.text.main) refers to main.o(.bss..L_MergedGlobals) for .L_MergedGlobals
     main.o(.text.main) refers to iwdg.o(.bss.hiwdg) for hiwdg
     main.o(.text.main) refers to stm32f4xx_hal.o(.text.HAL_GetTick) for HAL_GetTick
     main.o(.text.main) refers to sinf.o(i.__hardfp_sinf) for __hardfp_sinf
@@ -1385,23 +1386,25 @@ Image Symbol Table
     [Anonymous Symbol]                       0x0800161c   Section        0  stm32f4xx_hal_tim.o(.text.TIM_Base_SetConfig)
     [Anonymous Symbol]                       0x08001760   Section        0  stm32f4xx_it.o(.text.UsageFault_Handler)
     [Anonymous Symbol]                       0x08001764   Section        0  main.o(.text.main)
-    i.__ARM_fpclassifyf                      0x080017f0   Section        0  fpclassifyf.o(i.__ARM_fpclassifyf)
-    i.__hardfp_sinf                          0x08001818   Section        0  sinf.o(i.__hardfp_sinf)
-    i.__mathlib_flt_infnan                   0x080019a8   Section        0  funder.o(i.__mathlib_flt_infnan)
-    i.__mathlib_flt_invalid                  0x080019b0   Section        0  funder.o(i.__mathlib_flt_invalid)
-    i.__mathlib_flt_underflow                0x080019c0   Section        0  funder.o(i.__mathlib_flt_underflow)
-    i.__mathlib_rredf2                       0x080019d0   Section        0  rredf.o(i.__mathlib_rredf2)
-    i.__scatterload_copy                     0x08001b24   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08001b32   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08001b34   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.__set_errno                            0x08001b44   Section        0  errno.o(i.__set_errno)
-    twooverpi                                0x08001b50   Data          32  rredf.o(.constdata)
-    .constdata                               0x08001b50   Section       32  rredf.o(.constdata)
+    i.__ARM_fpclassifyf                      0x08001810   Section        0  fpclassifyf.o(i.__ARM_fpclassifyf)
+    i.__hardfp_sinf                          0x08001838   Section        0  sinf.o(i.__hardfp_sinf)
+    i.__mathlib_flt_infnan                   0x080019c8   Section        0  funder.o(i.__mathlib_flt_infnan)
+    i.__mathlib_flt_invalid                  0x080019d0   Section        0  funder.o(i.__mathlib_flt_invalid)
+    i.__mathlib_flt_underflow                0x080019e0   Section        0  funder.o(i.__mathlib_flt_underflow)
+    i.__mathlib_rredf2                       0x080019f0   Section        0  rredf.o(i.__mathlib_rredf2)
+    i.__scatterload_copy                     0x08001b44   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08001b52   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08001b54   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_errno                            0x08001b64   Section        0  errno.o(i.__set_errno)
+    twooverpi                                0x08001b70   Data          32  rredf.o(.constdata)
+    .constdata                               0x08001b70   Section       32  rredf.o(.constdata)
     _errno                                   0x20000000   Data           4  errno.o(.data)
     .data                                    0x20000000   Section        4  errno.o(.data)
     .L_MergedGlobals                         0x20000004   Data           8  stm32f4xx_hal.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x20000004   Section        0  stm32f4xx_hal.o(.data..L_MergedGlobals)
-    STACK                                    0x20000068   Section     1024  startup_stm32f427xx.o(STACK)
+    .L_MergedGlobals                         0x20000010   Data          12  main.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000010   Section        0  main.o(.bss..L_MergedGlobals)
+    STACK                                    0x20000078   Section     1024  startup_stm32f427xx.o(STACK)
 
     Global Symbols
 
@@ -1564,27 +1567,30 @@ Image Symbol Table
     SystemInit                               0x08001609   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
     TIM_Base_SetConfig                       0x0800161d   Thumb Code   322  stm32f4xx_hal_tim.o(.text.TIM_Base_SetConfig)
     UsageFault_Handler                       0x08001761   Thumb Code     2  stm32f4xx_it.o(.text.UsageFault_Handler)
-    main                                     0x08001765   Thumb Code   140  main.o(.text.main)
-    __ARM_fpclassifyf                        0x080017f1   Thumb Code    38  fpclassifyf.o(i.__ARM_fpclassifyf)
-    __hardfp_sinf                            0x08001819   Thumb Code   344  sinf.o(i.__hardfp_sinf)
-    __mathlib_flt_infnan                     0x080019a9   Thumb Code     6  funder.o(i.__mathlib_flt_infnan)
-    __mathlib_flt_invalid                    0x080019b1   Thumb Code    10  funder.o(i.__mathlib_flt_invalid)
-    __mathlib_flt_underflow                  0x080019c1   Thumb Code    10  funder.o(i.__mathlib_flt_underflow)
-    __mathlib_rredf2                         0x080019d1   Thumb Code   316  rredf.o(i.__mathlib_rredf2)
-    __scatterload_copy                       0x08001b25   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08001b33   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08001b35   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    __set_errno                              0x08001b45   Thumb Code     6  errno.o(i.__set_errno)
-    AHBPrescTable                            0x08001b70   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
-    Region$$Table$$Base                      0x08001b80   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001ba0   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08001765   Thumb Code   172  main.o(.text.main)
+    __ARM_fpclassifyf                        0x08001811   Thumb Code    38  fpclassifyf.o(i.__ARM_fpclassifyf)
+    __hardfp_sinf                            0x08001839   Thumb Code   344  sinf.o(i.__hardfp_sinf)
+    __mathlib_flt_infnan                     0x080019c9   Thumb Code     6  funder.o(i.__mathlib_flt_infnan)
+    __mathlib_flt_invalid                    0x080019d1   Thumb Code    10  funder.o(i.__mathlib_flt_invalid)
+    __mathlib_flt_underflow                  0x080019e1   Thumb Code    10  funder.o(i.__mathlib_flt_underflow)
+    __mathlib_rredf2                         0x080019f1   Thumb Code   316  rredf.o(i.__mathlib_rredf2)
+    __scatterload_copy                       0x08001b45   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08001b53   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08001b55   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    __set_errno                              0x08001b65   Thumb Code     6  errno.o(i.__set_errno)
+    AHBPrescTable                            0x08001b90   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
+    Region$$Table$$Base                      0x08001ba0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001bc0   Number         0  anon$$obj.o(Region$$Table)
     uwTickFreq                               0x20000004   Data           1  stm32f4xx_hal.o(.data..L_MergedGlobals)
     uwTickPrio                               0x20000008   Data           4  stm32f4xx_hal.o(.data..L_MergedGlobals)
     SystemCoreClock                          0x2000000c   Data           4  system_stm32f4xx.o(.data.SystemCoreClock)
-    hiwdg                                    0x20000010   Data          12  iwdg.o(.bss.hiwdg)
-    htim1                                    0x2000001c   Data          72  tim.o(.bss.htim1)
-    uwTick                                   0x20000064   Data           4  stm32f4xx_hal.o(.bss.uwTick)
-    __initial_sp                             0x20000468   Data           0  startup_stm32f427xx.o(STACK)
+    ticks                                    0x20000010   Data           4  main.o(.bss..L_MergedGlobals)
+    arr_value                                0x20000014   Data           4  main.o(.bss..L_MergedGlobals)
+    brightness                               0x20000018   Data           4  main.o(.bss..L_MergedGlobals)
+    hiwdg                                    0x2000001c   Data          12  iwdg.o(.bss.hiwdg)
+    htim1                                    0x20000028   Data          72  tim.o(.bss.htim1)
+    uwTick                                   0x20000070   Data           4  stm32f4xx_hal.o(.bss.uwTick)
+    __initial_sp                             0x20000478   Data           0  startup_stm32f427xx.o(STACK)
 
 
 
@@ -1594,9 +1600,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001bb0, Max: 0x00200000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001bd0, Max: 0x00200000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001ba0, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001bc0, Max: 0x00200000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1687,41 +1693,43 @@ Memory Map of the image
     0x0800175e   0x0800175e   0x00000002   PAD
     0x08001760   0x08001760   0x00000002   Code   RO           69    .text.UsageFault_Handler  stm32f4xx_it.o
     0x08001762   0x08001762   0x00000002   PAD
-    0x08001764   0x08001764   0x0000008c   Code   RO           11    .text.main          main.o
-    0x080017f0   0x080017f0   0x00000026   Code   RO          859    i.__ARM_fpclassifyf  m_wm.l(fpclassifyf.o)
-    0x08001816   0x08001816   0x00000002   PAD
-    0x08001818   0x08001818   0x00000190   Code   RO          848    i.__hardfp_sinf     m_wm.l(sinf.o)
-    0x080019a8   0x080019a8   0x00000006   Code   RO          862    i.__mathlib_flt_infnan  m_wm.l(funder.o)
-    0x080019ae   0x080019ae   0x00000002   PAD
-    0x080019b0   0x080019b0   0x00000010   Code   RO          864    i.__mathlib_flt_invalid  m_wm.l(funder.o)
-    0x080019c0   0x080019c0   0x00000010   Code   RO          867    i.__mathlib_flt_underflow  m_wm.l(funder.o)
-    0x080019d0   0x080019d0   0x00000154   Code   RO          875    i.__mathlib_rredf2  m_wm.l(rredf.o)
-    0x08001b24   0x08001b24   0x0000000e   Code   RO          908    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08001b32   0x08001b32   0x00000002   Code   RO          909    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08001b34   0x08001b34   0x0000000e   Code   RO          910    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x08001b42   0x08001b42   0x00000002   PAD
-    0x08001b44   0x08001b44   0x0000000c   Code   RO          898    i.__set_errno       mc_w.l(errno.o)
-    0x08001b50   0x08001b50   0x00000020   Data   RO          876    .constdata          m_wm.l(rredf.o)
-    0x08001b70   0x08001b70   0x00000010   Data   RO          839    .rodata.AHBPrescTable  system_stm32f4xx.o
-    0x08001b80   0x08001b80   0x00000020   Data   RO          907    Region$$Table       anon$$obj.o
+    0x08001764   0x08001764   0x000000ac   Code   RO           11    .text.main          main.o
+    0x08001810   0x08001810   0x00000026   Code   RO          859    i.__ARM_fpclassifyf  m_wm.l(fpclassifyf.o)
+    0x08001836   0x08001836   0x00000002   PAD
+    0x08001838   0x08001838   0x00000190   Code   RO          848    i.__hardfp_sinf     m_wm.l(sinf.o)
+    0x080019c8   0x080019c8   0x00000006   Code   RO          862    i.__mathlib_flt_infnan  m_wm.l(funder.o)
+    0x080019ce   0x080019ce   0x00000002   PAD
+    0x080019d0   0x080019d0   0x00000010   Code   RO          864    i.__mathlib_flt_invalid  m_wm.l(funder.o)
+    0x080019e0   0x080019e0   0x00000010   Code   RO          867    i.__mathlib_flt_underflow  m_wm.l(funder.o)
+    0x080019f0   0x080019f0   0x00000154   Code   RO          875    i.__mathlib_rredf2  m_wm.l(rredf.o)
+    0x08001b44   0x08001b44   0x0000000e   Code   RO          908    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08001b52   0x08001b52   0x00000002   Code   RO          909    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08001b54   0x08001b54   0x0000000e   Code   RO          910    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08001b62   0x08001b62   0x00000002   PAD
+    0x08001b64   0x08001b64   0x0000000c   Code   RO          898    i.__set_errno       mc_w.l(errno.o)
+    0x08001b70   0x08001b70   0x00000020   Data   RO          876    .constdata          m_wm.l(rredf.o)
+    0x08001b90   0x08001b90   0x00000010   Data   RO          839    .rodata.AHBPrescTable  system_stm32f4xx.o
+    0x08001ba0   0x08001ba0   0x00000020   Data   RO          907    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08001bb0, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08001bd0, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001ba0, Size: 0x00000468, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001bc0, Size: 0x00000478, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08001ba0   0x00000004   Data   RW          899    .data               mc_w.l(errno.o)
-    0x20000004   0x08001ba4   0x00000008   Data   RW          480    .data..L_MergedGlobals  stm32f4xx_hal.o
-    0x2000000c   0x08001bac   0x00000004   Data   RW          838    .data.SystemCoreClock  system_stm32f4xx.o
-    0x20000010        -       0x0000000c   Zero   RW           37    .bss.hiwdg          iwdg.o
-    0x2000001c        -       0x00000048   Zero   RW           52    .bss.htim1          tim.o
-    0x20000064        -       0x00000004   Zero   RW          479    .bss.uwTick         stm32f4xx_hal.o
-    0x20000068        -       0x00000400   Zero   RW            1    STACK               startup_stm32f427xx.o
+    0x20000000   0x08001bc0   0x00000004   Data   RW          899    .data               mc_w.l(errno.o)
+    0x20000004   0x08001bc4   0x00000008   Data   RW          480    .data..L_MergedGlobals  stm32f4xx_hal.o
+    0x2000000c   0x08001bcc   0x00000004   Data   RW          838    .data.SystemCoreClock  system_stm32f4xx.o
+    0x20000010        -       0x0000000c   Zero   RW           18    .bss..L_MergedGlobals  main.o
+    0x2000001c        -       0x0000000c   Zero   RW           37    .bss.hiwdg          iwdg.o
+    0x20000028        -       0x00000048   Zero   RW           52    .bss.htim1          tim.o
+    0x20000070        -       0x00000004   Zero   RW          479    .bss.uwTick         stm32f4xx_hal.o
+    0x20000074   0x08001bd0   0x00000004   PAD
+    0x20000078        -       0x00000400   Zero   RW            1    STACK               startup_stm32f427xx.o
 
 
 ==============================================================================
@@ -1733,7 +1741,7 @@ Image component sizes
 
        202          0          0          0          0       2212   gpio.o
         46          0          0          0         12       1191   iwdg.o
-       334          4          0          0          0       4271   main.o
+       366          4          0          0         12       4373   main.o
         36          8        428          0       1024        812   startup_stm32f427xx.o
        164          0          0          8          4       7632   stm32f4xx_hal.o
        162          0          0          0          0      10915   stm32f4xx_hal_cortex.o
@@ -1749,9 +1757,9 @@ Image component sizes
        384          0          0          0         72       6770   tim.o
 
     ----------------------------------------------------------------------
-      5484         16        476         12       1112     134172   Object Totals
+      5516         16        476         12       1128     134274   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        58          0          0          0          0          0   (incl. Padding)
+        58          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1798,15 +1806,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      6564        130        508         16       1112     134744   Grand Totals
-      6564        130        508         16       1112     134744   ELF Image Totals
-      6564        130        508         16          0          0   ROM Totals
+      6596        130        508         16       1128     134846   Grand Totals
+      6596        130        508         16       1128     134846   ELF Image Totals
+      6596        130        508         16          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7072 (   6.91kB)
-    Total RW  Size (RW Data + ZI Data)              1128 (   1.10kB)
-    Total ROM Size (Code + RO Data + RW Data)       7088 (   6.92kB)
+    Total RO  Size (Code + RO Data)                 7104 (   6.94kB)
+    Total RW  Size (RW Data + ZI Data)              1144 (   1.12kB)
+    Total ROM Size (Code + RO Data + RW Data)       7120 (   6.95kB)
 
 ==============================================================================
 
