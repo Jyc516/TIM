@@ -47,7 +47,7 @@
 /* USER CODE BEGIN PV */
 uint32_t ticks;
 uint32_t arr_value;
-uint32_t brightness;
+extern volatile uint32_t brightness;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,7 +127,7 @@ int main(void)
     // ticks = HAL_GetTick();
     // arr_value = __HAL_TIM_GetAutoreload(&htim1) + 1;
     // brightness = arr_value * sinf(4 * ticks / 1000.f) - 1;
-    // __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, brightness);
+    __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, brightness);
 
     if (HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_SET) {
       HAL_IWDG_Refresh(&hiwdg);
