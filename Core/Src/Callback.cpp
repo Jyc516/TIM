@@ -4,6 +4,7 @@
 #include "main.h"
 #include "gpio.h"
 #include "tim.h"
+#include "usart.h"
 
 #include "cmath"
 
@@ -27,3 +28,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim) {
         ++count;
     }
 }
+
+extern uint8_t rx_msg[20];
+extern uint8_t tx_msg[20];
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart == &huart7) {
+        for (int i=0; i<20; i++) {
+            tx_msg[i] = rx_msg[i];
+        }
+        HAL_UART_Transmit_IT(&huart7, tx_msg, 20);
+    }
+    HAL_UART_Receive_IT(&huart7, rx_msg, 20);
+}
+
+// void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+//     if (huart == &huart7) {
+//         HAL_UART_Transmit(&huart7, tx_msg, 19, 1000);
+//     }
+// }
