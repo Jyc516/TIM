@@ -40,9 +40,3 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     }
     HAL_UART_Receive_IT(&huart7, rx_msg, 20);
 }
-
-// void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
-//     if (huart == &huart7) {
-//         HAL_UART_Transmit(&huart7, tx_msg, 19, 1000);
-//     }
-// }
